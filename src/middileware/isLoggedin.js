@@ -18,7 +18,7 @@ const isLoggedIn = async(req, res, next) => {
 
     const originalObject = jwt.verify(token, process.env.JWT_SECRET) 
     // console.log(originalObject)
-    const foundUser = await User.findById(originalObject.id)
+    const foundUser = await User.findById(originalObject.id).populate("organizationId")
     //  console.log(foundUser)
     if(!foundUser)
     {
@@ -26,7 +26,7 @@ const isLoggedIn = async(req, res, next) => {
     }
 
     req.user = foundUser
-
+    // console.log(req.user)
     next()
 }
 

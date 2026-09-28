@@ -3,7 +3,7 @@ const {User} = require("../models/User.schema")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const {AppError} = require("../utils/AppError")
-const {isLoggedIn} = require("../middileware/isLoggedin")
+const {isLoggedIn} = require("../middileware/index")
 const router = express.Router()
 
 

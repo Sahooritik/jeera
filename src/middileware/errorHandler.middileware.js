@@ -1,5 +1,18 @@
-const errorHandler = (err, req, res, next) => {
-    
-    res.status(err.status || 500).json({ message: err.message || "Internal Server Error" });
-  }
-module.exports = { errorHandler };
+
+
+
+const error = (err, req, res, next) => {
+    err.statusCode = err.statusCode || 500
+    err.message = err.message || "Internal Server Error"
+
+    res.status(err.statusCode).json({
+        message: err.message,
+        error: err.message
+    })
+
+
+}
+
+module.exports = {
+    errorHandler : error
+}

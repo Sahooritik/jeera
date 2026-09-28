@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-const { isLoggedIn } = require("../middileware/isLoggedin")
-const {authorize} = require("../middileware/authorize")
+const { isLoggedIn , authorize} = require("../middileware/index")
+
 
 const {
    createOrg,
@@ -39,6 +39,10 @@ router.get("/organization/:id/admin", isLoggedIn, authorize("owner"), getAllAdmi
 router.get("/admin/:id", isLoggedIn, authorize("owner"), getAdminById)
 router.patch("/admin/:id", isLoggedIn, authorize("owner"), activateAdmin)
 router.delete("/admin/:id", isLoggedIn, authorize("owner"), deactivateAdmin)
+
+
+
+
 
 
 

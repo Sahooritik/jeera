@@ -3,7 +3,7 @@ const {Organization} = require("../models/Organization.schema")
 const mongoose = require("mongoose")
 const validator = require("validator")
 const bcrypt = require("bcrypt")
-
+const {User} = require("../models/User.schema")
 const createOrg = async (req, res) => {
     const {name , isActive} = req.body
 
@@ -188,7 +188,7 @@ const getAllAdmins = async(req, res) => {
         organizationId : foundOrg._id,
         role : "admin"
     })
-
+   console.log(foundAdmins)
 
     res
     .status(200)

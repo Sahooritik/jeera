@@ -6,25 +6,34 @@ const cookieParser = require("cookie-parser")
 
 
 
-// Import routes and middleware
+/*
+     || M I D D I L E W A R E S      AND    R O U T E     F I L E S  ||
+*/
 // const {AddUser} = require("./utils/AddUser")
 const {AuthRoutes} = require("./routes/Auth.routes")
 const {errorHandler} = require("./middileware/errorHandler.middileware")
 const {ownerRouter} = require("./routes/owner.routes")
+const {AdminRouter} = require("./routes/admin.routes")
+const {EmployeeRouter} = require("./routes/employee.routes")
 
 
 
-
-// Create an Express application
 const app = express()
 app.use(express.json()) // Middleware to parse JSON request bodies
 app.use(cookieParser()) // Middleware to parse cookies
 
 
-
+/*
+      || R O U T E S  || 
+*/
 app.use("/api/auth",AuthRoutes)
 app.use("/api/owner",ownerRouter)
+app.use("/api/admin", AdminRouter)
+app.use("/api/employee",EmployeeRouter)
 
+/*
+      || D A T A B A S E   C O N N E C T I O N  || 
+*/
 
 mongoose.connect(process.env.DB_URL)
 .then(()=>{
